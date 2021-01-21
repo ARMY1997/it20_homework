@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3308
--- Время создания: Янв 19 2021 г., 18:38
+-- Время создания: Янв 21 2021 г., 16:27
 -- Версия сервера: 8.0.18
 -- Версия PHP: 7.3.12
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- База данных: `education`
 --
+CREATE DATABASE IF NOT EXISTS `education` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `education`;
 
 -- --------------------------------------------------------
 
@@ -46,20 +48,21 @@ CREATE TABLE IF NOT EXISTS `news` (
 
 DROP TABLE IF EXISTS `regions`;
 CREATE TABLE IF NOT EXISTS `regions` (
-  `region1` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL,
+  `region` varchar(50) NOT NULL,
+  `code` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `regions`
 --
 
-INSERT INTO `regions` (`region1`) VALUES
-('Донецька область'),
-('Дніпропетровська область'),
-('Харківська область'),
-('Львівська область'),
-('	Одеська область'),
-('Луганська область');
+INSERT INTO `regions` (`id`, `region`, `code`) VALUES
+(1, 'Донецкая область', 5),
+(2, 'Киевская область', 10),
+(3, 'Луганская область', 12),
+(4, 'Николаевская область', 14),
+(5, 'Полтавская область', 16);
 
 -- --------------------------------------------------------
 
