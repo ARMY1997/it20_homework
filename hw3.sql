@@ -1,6 +1,6 @@
 1.	Необходимо выбрать всех пользователей из таблицы users, которые зарегистрировали свои почтовые ящики (email) в сервисе “mail.ru»
 
-SELECT `name` FROM `users` WHERE email = 'mail.ru'
+SELECT `name` FROM `users` WHERE email LIKE '%mail.ru'
 
 2.	Необходимо выбрать номер сертификата (number), владельца сертификата (fio) из таблицы сертификатов (certificates), где не указан год выпуска year ( по умолчанию поле year имеет значение NULL)
 
@@ -13,7 +13,7 @@ SELECT number, fio FROM certificates WHERE year IS NULL
 
 4.	Удалить последние 5 записей из таблицы users
 
-DELETE FROM users WHERE id BETWEEN 6 AND 11;
+DELETE FROM users LIMIT 5;
 
 5.	Найти минимальное значение из поля count_students в таблице organizations, где type_id = 5
 
@@ -32,14 +32,13 @@ SELECT * FROM news ORDER BY created_at ASC LIMIT 10
 
 9.	Необходимо выбрать номер телефона (phones), и имя (name) из таблицы директоров directors, у которых название организации (organization) начинается со слова «ВУЗ»
 SELECT phones,name FROM directors WHERE organization LIKE '%ВУЗ'
-SELECT phones, name FROM directors WHERE( SELECT organization FROM directors WHERE organization LIKE '%ВУЗ')
+
 
 10.	Вывести surname из таблицы студентов students, которые родились  в 1995 году ( поле birthday имеет формат DATE)
-SELECT surname FROM students WHERE birthday BETWEEN 1995-01-01 AND 1995-12-31 
-SELECT surname FROM students WHERE(SELECT year(birthday) FROM students WHERE birthday = 1995)
+SELECT surname, YEAR(birthday) FROM students WHERE birthday = 1995
 
 11.	Вывести первые 5 записей из таблицы publishes, результат должен содержать следующие поля: дата (publish_date) и текст (body)
-SELECT publish_date, body FROM publishes LIMIT 0,4 
+SELECT publish_date, body FROM publishes LIMIT 5 
 
 12.	Необходимо подсчитать сколько школ зарегистрированы в каждом регионе из таблицы schools. Результат должен содержать количество школ и ид региона region_id
 SELECT region_id, count(*) as CountSchoolInRegion FROM schools GROUP BY region_id
