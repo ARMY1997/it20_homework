@@ -8,7 +8,11 @@
         inputValue:'',
         notes: ['news1'],
         checkedNames: [],
-        picked: ''
+        picked: '',
+        render:` '<h1>HELLO '+
+                           '<span style="color:blue;">'+
+                              'WORLD</span>'+
+                         '</h1>'`
       }
     },
     methods:{
